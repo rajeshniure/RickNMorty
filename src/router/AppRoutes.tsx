@@ -2,7 +2,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "../pages/Home";
 import Favourite from "../pages/Favourite";
 import Navbar from "../components/Navbar";
-
+import CharacterDetails from "../pages/CharacterDetail";
 
 
 const AppRoutes = () => {
@@ -12,12 +12,14 @@ const AppRoutes = () => {
   return (
 
     <BrowserRouter>
+    <div className="bg-neutral-800 min-h-screen">
     <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/favourite" element={<Favourite />} />
-        
+        <Route path="/character/:id" element={<CharacterDetails />} /> 
       </Routes>
+      </div>
     </BrowserRouter>
 
 

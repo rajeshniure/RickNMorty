@@ -1,45 +1,36 @@
 import logo from "../assets/logo.png";
-import { CiSearch } from "react-icons/ci";
+import SearchBar from "../components/SearchBar";
+import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
+  const location = useLocation();
+  const showSearchBar = !location.pathname.startsWith("/details");
+
   return (
-    <nav className="w-full bg-neutral-800 text-neutral-200 px-6 py-3 border-b border-neutral-800 mb-5">
-      <div className="grid grid-cols-3 items-center">
-        <div className="flex items-center">
-          <img src={logo} alt="Logo" className="h-9 w-auto" />
+    <nav className="w-full mx-auto sticky top-0 z-50 bg-neutral-800 text-neutral-200 py-2 border-b border-neutral-800 mb-5">
+      <div className="flex justify-between items-center w-7xl mx-auto">
+
+        <div >
+          <img src={logo} alt="Logo" className="h-10 w-auto scale-170" />
         </div>
 
-        <div className="flex justify-center">
-          <div className="relative w-full max-w-md">
-            <input
-              type="text"
-              placeholder="Search"
-              className="
-                w-full rounded-md bg-neutral-800
-                border border-neutral-700
-                px-4 py-2 pr-10 text-sm
-                placeholder-neutral-500
-                focus:outline-none
-                focus:ring-1 focus:ring-emerald-500
-              "
-            />
-            <CiSearch className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 text-lg" />
-          </div>
+        <div className="flex flex-1">
+          {showSearchBar && <SearchBar />}
         </div>
 
-        <div className="flex justify-center items-center gap-8">
-          <a
-            href="#"
-            className="text-md text-neutral-300 hover:text-emerald-400 transition"
+        <div className="flex justify-end items-center gap-20">
+          <Link
+            to="/"
+            className="text-lg text-neutral-300 hover:text-emerald-400 transition"
           >
             Home
-          </a>
-          <a
-            href="#"
-            className="text-md text-neutral-300 hover:text-emerald-400 transition"
+          </Link>
+          <Link
+            to="/favorites"
+            className="text-lg text-neutral-300 hover:text-emerald-400 transition"
           >
             Favorites
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

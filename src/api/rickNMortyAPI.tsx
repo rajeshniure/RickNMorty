@@ -1,25 +1,42 @@
-// import axios from "axios";
 
-// const api = axios.create({
-//   baseURL: "https://rickandmortyapi.com/api",
-//   timeout: 10000,
-// });
+import Axios from "axios";
+import { type Character } from "../types/character";
 
-// export interface CharactersResponse {
-//   info: {
-//     count: number;
-//     pages: number;
-//     next: string | null;
-//     prev: string | null;
-//   };
-//   results: Character[];
-// }
+const API_BASE_URL = "https://rickandmortyapi.com/api";
 
-// import { type Character } from "../types/character";
+export async function getCharacters(): Promise<Character[]> {
+  try {
+    const response = await Axios.get(`${API_BASE_URL}/character`);
+    return response.data.results;
+  } catch (error) {
+    console.error("Error fetching characters:", error);
+    return [];
+  }
+}
 
-// export async function fetchCharacters(page = 1): Promise<CharactersResponse> {
-//   const response = await api.get<CharactersResponse>(
-//     `/character?page=${page}`
-//   );
-//   return response.data;
-// }
+export async function getCharacterById(id: number|string): Promise<Character | null> {
+  try {
+    const response = await Axios.get(`${API_BASE_URL}/character/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching character:", error);
+    return null;
+  }
+}
+
+
+export interface Episode {
+  id: number;
+  name: string;
+  episode: string;
+}
+
+export async function getEpisodesByUrls(urls: string[]): Promise<Episode[]> {
+  try {
+    const episodes = await Promise.all(urls.map((url) => Axios.get(url).then((r) => r.data)));
+    return episodes;
+  } catch (error) {
+    console.error("Error fetching episodes:", error);
+    return [];
+  }
+}
