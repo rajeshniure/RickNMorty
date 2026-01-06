@@ -3,10 +3,16 @@ import { type Character } from "../types/character";
 
 const API_BASE_URL = "https://rickandmortyapi.com/api";
 
-export async function getCharacters(page = 1, name = ""): Promise<Character[]> {
+export async function getCharacters(page = 1, name = "",status = "", species = "", gender = ""): Promise<Character[]> {
   try {
     const response = await Axios.get(`${API_BASE_URL}/character`, {
-      params: { page, name },
+      params: {
+        page,
+        name: name || undefined,
+        status: status.toLowerCase() || undefined,
+        species: species.toLowerCase() || undefined,
+        gender: gender.toLowerCase() || undefined,
+      },
     });
     return response.data.results;
   } catch (error) {

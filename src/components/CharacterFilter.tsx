@@ -11,7 +11,7 @@ interface CharacterFilterProps {
 
 const FilterOptions = {
   status: ["Alive", "Dead", "Unknown"],
-  species: ["Human", "Alien", "Humanoid", "Robot"],
+  species: ["Human", "Alien", "Humanoid", "Robot","Mythological Creature","Poopybutthole","Unknown"],
   gender: ["Male", "Female", "Genderless", "Unknown"],
 };
 

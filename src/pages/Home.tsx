@@ -12,19 +12,22 @@ function Home({ searchTerm}: { searchTerm: string }) {
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  
+  const [status, setStatus] = useState("");
+  const [species, setSpecies] = useState("");
+  const [gender, setGender] = useState("");
+
    useEffect(() => {
     setCharacters([]);
     setPage(1);
     setHasMore(true);
-  }, [searchTerm]);
+  }, [searchTerm, status, species, gender]);
    
    useEffect(() => {
     async function fetchCharacters() {
       if (isLoading || !hasMore) return;
 
       setIsLoading(true);
-      const results = await getCharacters(page,searchTerm);
+      const results = await getCharacters(page, searchTerm, status, species, gender);
 
       if (results.length === 0) {
         setHasMore(false);
@@ -36,7 +39,7 @@ function Home({ searchTerm}: { searchTerm: string }) {
     }
 
     fetchCharacters();
-  }, [page,searchTerm]);
+  }, [page, searchTerm, status, species, gender]);
 
   
     useEffect(() => {
@@ -59,7 +62,7 @@ function Home({ searchTerm}: { searchTerm: string }) {
 
   return (
     <>
-    <CharacterFilter status="" species="" gender="" setStatus={() => {}} setSpecies={() => {}} setGender={() => {}}  />
+    <CharacterFilter status={status} species={species} gender={gender} setStatus={setStatus} setSpecies={setSpecies} setGender={setGender}  />
     <div className="max-w-7xl mx-auto">
        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center">
       {characters.map((character: Character) => (
