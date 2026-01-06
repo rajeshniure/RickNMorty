@@ -37,7 +37,7 @@ function CharactersCard({ character }: CharacterCardProps) {
 
           <button
             onClick={() => Navigate(`/character/${character.id}`)}
-            className="absolute right-3 bottom-27 bg-black text-lime-400 w-15 h-15 rounded-full flex items-center justify-center font-bold shadow-md
+            className="absolute right-3 bottom-26 bg-black text-lime-400 w-15 h-15 rounded-full flex items-center justify-center font-bold shadow-md
                   transition-all duration-300
                   hover:bg-lime-400
                   hover:text-black

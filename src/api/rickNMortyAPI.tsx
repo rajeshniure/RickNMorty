@@ -4,9 +4,9 @@ import { type Character } from "../types/character";
 
 const API_BASE_URL = "https://rickandmortyapi.com/api";
 
-export async function getCharacters(): Promise<Character[]> {
+export async function getCharacters(page=1): Promise<Character[]> {
   try {
-    const response = await Axios.get(`${API_BASE_URL}/character`);
+    const response = await Axios.get(`${API_BASE_URL}/character?page=${page}`);
     return response.data.results;
   } catch (error) {
     console.error("Error fetching characters:", error);
