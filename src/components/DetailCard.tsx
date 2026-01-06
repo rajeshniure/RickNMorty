@@ -22,7 +22,7 @@ function DetailCard({ character, episodes }: CharacterDetailCardProps) {
           className="w-full rounded-xl object-cover"
         />
 
-        <FavoriteIcon />
+        <FavoriteIcon character={character} />
       </div>
 
       <div className="flex flex-col justify-between  bg-lime-400 rounded-xl p-6 text-black">

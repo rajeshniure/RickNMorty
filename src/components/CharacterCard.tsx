@@ -18,7 +18,7 @@ function CharactersCard({ character }: CharacterCardProps) {
             alt="Rick Sanchez"
             className="w-full h-70 object-cover"
           />
-          <FavoriteIcon />
+          <FavoriteIcon character={character} />
         </div>
 
         <div className="relative bg-lime-400 px-3 pt-5 pb-3 ">

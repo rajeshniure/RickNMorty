@@ -28,10 +28,10 @@ function Navbar() {
             Home
           </Link>
           <Link
-            to="/favourite"
+            to="/favorite"
             className="text-lg text-neutral-300 hover:text-emerald-400 transition"
           >
-            Favourites
+            Favorites
           </Link>
         </div>
       </div>

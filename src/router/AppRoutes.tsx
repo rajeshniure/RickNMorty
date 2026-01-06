@@ -1,14 +1,12 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "../pages/Home";
-import Favourite from "../pages/Favourite";
+import Favorite from "../pages/Favorite";
 import Navbar from "../components/Navbar";
 import CharacterDetails from "../pages/CharacterDetail";
 
 
 const AppRoutes = () => {
    
-  
-  
   return (
 
     <BrowserRouter>
@@ -16,7 +14,7 @@ const AppRoutes = () => {
     <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/favourite" element={<Favourite />} />
+        <Route path="/favorite" element={<Favorite />} />
         <Route path="/character/:id" element={<CharacterDetails />} /> 
       </Routes>
       </div>
