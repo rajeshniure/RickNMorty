@@ -5,19 +5,26 @@ import { type Character } from "../types/character";
 import Loading from "../components/Loading";
 import CharacterFilter from "../components/CharacterFilter";
 
-function Home() {
+function Home({ searchTerm}: { searchTerm: string }) {
    
   const [characters, setCharacters] = useState<Character[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
   
+   useEffect(() => {
+    setCharacters([]);
+    setPage(1);
+    setHasMore(true);
+  }, [searchTerm]);
+   
    useEffect(() => {
     async function fetchCharacters() {
       if (isLoading || !hasMore) return;
 
       setIsLoading(true);
-      const results = await getCharacters(page);
+      const results = await getCharacters(page,searchTerm);
 
       if (results.length === 0) {
         setHasMore(false);
@@ -29,7 +36,7 @@ function Home() {
     }
 
     fetchCharacters();
-  }, [page]);
+  }, [page,searchTerm]);
 
   
     useEffect(() => {
@@ -47,6 +54,9 @@ function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isLoading, hasMore]);
 
+
+  
+
   return (
     <>
     <CharacterFilter status="" species="" gender="" setStatus={() => {}} setSpecies={() => {}} setGender={() => {}}  />
@@ -63,11 +73,15 @@ function Home() {
           </div>
         )}
 
-        {!hasMore && (
-          <p className="text-center text-neutral-400 mt-6 text-xl">
-            No more characters
-          </p>
-        )}
+        {!hasMore && characters.length > 0 && (
+        <p className="text-center text-neutral-400 mt-6 text-xl">No more characters</p>
+      )}
+
+        {characters.length === 0 && !isLoading && (
+        <p className="text-center text-neutral-400 mt-10 text-xl">
+          No characters found for "{searchTerm}"
+        </p>
+      )}
     </div>
     </>
   )

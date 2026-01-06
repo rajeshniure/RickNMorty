@@ -2,7 +2,12 @@ import logo from "../assets/logo.png";
 import SearchBar from "../components/SearchBar";
 import { Link, useLocation } from "react-router-dom";
 
-function Navbar() {
+interface NavbarProps {
+  searchTerm: string;
+  setSearchTerm: (val: string) => void;
+}
+
+function Navbar({ searchTerm, setSearchTerm }: NavbarProps) {
   const location = useLocation();
   const showSearchBar = !location.pathname.startsWith("/character/");
 
@@ -17,7 +22,7 @@ function Navbar() {
         </Link>
 
         <div className="flex flex-1">
-          {showSearchBar && <SearchBar />}
+          {showSearchBar && <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />}
         </div>
 
         <div className="flex justify-end items-center gap-20">

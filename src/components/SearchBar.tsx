@@ -1,8 +1,20 @@
 import { FiSearch } from "react-icons/fi";
-import { useState } from "react";
+import useDebounce from "../hooks/useDebounce";
+import { useEffect, useState } from "react";
 
-function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState<string>("");
+interface SearchBarProps {
+  searchTerm: string;
+  setSearchTerm: (val: string) => void;
+}
+
+function SearchBar({ searchTerm, setSearchTerm }: SearchBarProps) {
+  const [input, setInput] = useState(searchTerm);
+  const debouncedInput = useDebounce(input, 500);
+  
+
+  useEffect(() => {
+    setSearchTerm(debouncedInput);
+  }, [debouncedInput, setSearchTerm]);
 
   return (
     <div className="w-md mx-auto">
@@ -23,8 +35,8 @@ function SearchBar() {
         <input
           type="text"
           placeholder="Search characters..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           className="
             w-full
             bg-transparent
