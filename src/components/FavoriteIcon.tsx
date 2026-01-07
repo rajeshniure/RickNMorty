@@ -1,6 +1,7 @@
 import { MdFavorite } from "react-icons/md";
 import { useFavorite } from "../context/FavoriteContext";
 import { type Character } from "../types/character";
+import { memo } from "react";
 
 
 
@@ -36,4 +37,4 @@ function FavoriteIcon({ character }: { character: Character }) {
   );
 }
 
-export default FavoriteIcon;
+export default memo(FavoriteIcon);
