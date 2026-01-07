@@ -1,20 +1,32 @@
 import { FiSearch } from "react-icons/fi";
 import useDebounce from "../hooks/useDebounce";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
-interface SearchBarProps {
-  searchTerm: string;
-  setSearchTerm: (val: string) => void;
-}
 
-function SearchBar({ searchTerm, setSearchTerm }: SearchBarProps) {
-  const [input, setInput] = useState(searchTerm);
+// interface SearchBarProps {
+//   searchTerm: string;
+//   setSearchTerm: (val: string) => void;
+// }
+
+function SearchBar() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchFromURL = searchParams.get("search") || "";
+
+  const [input, setInput] = useState(searchFromURL);
   const debouncedInput = useDebounce(input, 500);
-  
 
   useEffect(() => {
-    setSearchTerm(debouncedInput);
-  }, [debouncedInput, setSearchTerm]);
+    const params = new URLSearchParams(searchParams);
+
+    if (debouncedInput) {
+      params.set("search", debouncedInput);
+    } else {
+      params.delete("search");
+    }
+
+    setSearchParams(params);
+  }, [debouncedInput]);
 
   return (
     <div className="w-md mx-auto">

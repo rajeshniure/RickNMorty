@@ -1,7 +1,12 @@
 import { useFavorite } from "../context/FavoriteContext";
 import CharacterCard from "../components/CharacterCard";
+import { useSearchParams } from "react-router-dom";
 
-function Favorite({ searchTerm }: { searchTerm: string }) {
+
+function Favorite() {
+  const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get("search") || "";
+  
   const { favorite } = useFavorite();
 
   const filtered = favorite.filter((c) =>

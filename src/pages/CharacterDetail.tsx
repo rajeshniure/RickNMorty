@@ -37,6 +37,10 @@ export default function CharacterDetail() {
   if (isLoading || !character) return <Loading message="Fetching character details..." />;
 
   return (
+    <>
+    <h1 className="text-4xl text-center font-bold text-emerald-400">Know more about {character.name}</h1>
     <DetailCard character={character} episodes={episodes} />
+    
+    </>
   );
 }

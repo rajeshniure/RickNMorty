@@ -2,12 +2,12 @@ import logo from "../assets/logo.png";
 import SearchBar from "../components/SearchBar";
 import { Link, useLocation } from "react-router-dom";
 
-interface NavbarProps {
-  searchTerm: string;
-  setSearchTerm: (val: string) => void;
-}
+// interface NavbarProps {
+//   searchTerm: string;
+//   setSearchTerm: (val: string) => void;
+// }
 
-function Navbar({ searchTerm, setSearchTerm }: NavbarProps) {
+function Navbar() {
   const location = useLocation();
   const showSearchBar = !location.pathname.startsWith("/character/");
 
@@ -17,12 +17,12 @@ function Navbar({ searchTerm, setSearchTerm }: NavbarProps) {
 
         <Link to="/">
         <div >
-          <img src={logo} alt="Logo" className="h-10 w-auto scale-170" />
+          <img src={logo} alt="Logo" className="h-10 w-auto scale-170 pt-1" />
         </div>
         </Link>
 
         <div className="flex flex-1">
-          {showSearchBar && <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />}
+          {showSearchBar && <SearchBar />}
         </div>
 
         <div className="flex justify-end items-center gap-20">
