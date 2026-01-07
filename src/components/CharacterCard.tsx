@@ -1,6 +1,7 @@
 import FavoriteIcon from "./FavoriteIcon";
 import { type Character } from "../types/character";
 import { useNavigate } from "react-router-dom";
+import { memo } from "react";
 
 interface CharacterCardProps {
   character: Character;
@@ -53,4 +54,4 @@ function CharactersCard({ character }: CharacterCardProps) {
   );
 }
 
-export default CharactersCard;
+export default memo(CharactersCard);

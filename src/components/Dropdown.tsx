@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 interface DropdownProps {
   label: string;
   value: string;
@@ -26,4 +28,4 @@ function Dropdown ({ label, value, options, onChange }: DropdownProps) {
   );
 };
 
-export default Dropdown
+export default memo(Dropdown);
