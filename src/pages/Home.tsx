@@ -67,7 +67,7 @@ function Home() {
   return (
     <>
       <CharacterFilter />
-      <div className="max-w-7xl mx-auto ">
+      <div className="max-w-7xl mx-4 lg:mx-auto  ">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center">
           {characters.map((character: Character) => (
             <CharacterCard key={character.id} character={character} />

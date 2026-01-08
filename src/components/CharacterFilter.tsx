@@ -1,14 +1,6 @@
 import Dropdown from "./Dropdown";
 import { useSearchParams } from "react-router-dom";
 
-// interface CharacterFilterProps {
-//   status: string;
-//   species: string;
-//   gender: string;
-//   setStatus: (val: string) => void;
-//   setSpecies: (val: string) => void;
-//   setGender: (val: string) => void;
-// }
 
 const FilterOptions = {
   status: ["Alive", "Dead", "Unknown"],

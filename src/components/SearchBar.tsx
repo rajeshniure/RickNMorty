@@ -3,12 +3,6 @@ import useDebounce from "../hooks/useDebounce";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-
-// interface SearchBarProps {
-//   searchTerm: string;
-//   setSearchTerm: (val: string) => void;
-// }
-
 function SearchBar() {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchFromURL = searchParams.get("search") || "";
@@ -29,20 +23,27 @@ function SearchBar() {
   }, [debouncedInput]);
 
   return (
-    <div className="w-md mx-auto">
+    <div className="w-full px-4 sm:px-6 md:px-0 md:max-w-md mx-auto">
       <div
         className="
-          flex items-center gap-3
+          flex items-center gap-2 sm:gap-3
           w-full
-          px-0 py-3
+          px-3 sm:px-4
+          py-2 sm:py-3
           bg-neutral-800
-          border-b-3 border-gray-400
+          border-b-2 border-gray-500
           transition-all duration-300
           focus-within:border-lime-500
-          focus-within:ring-lime-100
         "
       >
-        <FiSearch className="text-xl text-gray-400 transition-colors duration-300 focus-within:text-lime-500" />
+        <FiSearch
+          className="
+            text-lg sm:text-xl
+            text-gray-400
+            transition-colors duration-300
+            group-focus-within:text-lime-500
+          "
+        />
 
         <input
           type="text"
@@ -55,7 +56,7 @@ function SearchBar() {
             text-gray-100
             placeholder-gray-400
             outline-none
-            text-sm
+            text-sm sm:text-base
           "
         />
       </div>
